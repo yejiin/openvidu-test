@@ -41,7 +41,7 @@ public class SessionController {
     // Secret shared with our OpenVidu server
     private String SECRET;
 
-    public SessionController(@Value("${openvidu.secret") String secret, @Value("${openvidu.url}") String openviduUrl) {
+    public SessionController(@Value("${openvidu.secret}") String secret, @Value("${openvidu.url}") String openviduUrl) {
         this.SECRET = secret;
         this.OPENVIDU_URL = openviduUrl;
         this.openVidu = new OpenVidu(OPENVIDU_URL, SECRET);
