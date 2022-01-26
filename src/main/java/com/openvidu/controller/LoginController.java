@@ -28,7 +28,7 @@ public class LoginController {
         String user = req.getUser();
         String pass = req.getPass();
 
-        log.info("Logging in | {user, pass} = {}, {}", user, pass);
+        log.debug("Logging in | {user, pass} = {}, {}", user, pass);
 
         if (login(user, pass)) {
             // Validate session and return OK
@@ -44,7 +44,7 @@ public class LoginController {
 
     @PostMapping("/logout")
     public ResponseEntity logout(HttpSession session) {
-        log.info("' {} has logged out", session.getAttribute("loggedUser"));
+        log.debug("' {} has logged out", session.getAttribute("loggedUser"));
         session.invalidate();;
         return ResponseEntity.ok().build();
     }

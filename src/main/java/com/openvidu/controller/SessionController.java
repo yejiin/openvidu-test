@@ -56,7 +56,7 @@ public class SessionController {
             e.printStackTrace();
         }
 
-        log.info("Getting a token from OpenVidu Server | {sessionName}={}", req.getSessionName());
+        log.debug("Getting a token from OpenVidu Server | {sessionName}={}", req.getSessionName());
 
         // The video-call to connect
         String sessionName = req.getSessionName();
@@ -77,7 +77,7 @@ public class SessionController {
 
         if (this.mapSessions.get(sessionName) != null) {
             // Session already exists
-            log.info("Existing session {}", sessionName);
+            log.debug("Existing session {}", sessionName);
 
             try {
                 // Generated a new Connection with the recently created connectionProperties
@@ -101,7 +101,7 @@ public class SessionController {
             }
         }
         // New Session
-        log.info("New Session {}", sessionName);
+        log.debug("New Session {}", sessionName);
 
         try {
             // Create a new OpenVidu Session
@@ -131,7 +131,7 @@ public class SessionController {
             return getErrorResponse(e);
         }
 
-        log.info("Removing user | {sessionName, token}={}, {}", req.getSessionName(), req.getToken());
+        log.debug("Removing user | {sessionName, token}={}, {}", req.getSessionName(), req.getToken());
 
         String sessionName = req.getSessionName();
         String token = req.getToken();
@@ -149,12 +149,12 @@ public class SessionController {
                 return ResponseEntity.ok().build();
             } else {
                 // The TOKEN wasn't valid
-                log.info("Problems in the app server: the TOKEN wasn't valid");
+                log.debug("Problems in the app server: the TOKEN wasn't valid");
                 return ResponseEntity.internalServerError().build();
             }
         } else {
             // The SESSION does not exist
-            log.info("Problems in the app server: the SESSION does not exist");
+            log.debug("Problems in the app server: the SESSION does not exist");
             return ResponseEntity.internalServerError().build();
         }
     }
